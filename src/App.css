@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+/* Основные настройки */
+:root {
+  --fon: #141414
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: var(--fon);
+  color: rgb(190, 190, 190);
+  user-select: none;
+  /* text-indent: 15px; */
+  font-size: 18px;
+  font-weight: bolder;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.layout {
+  background-color: #141414;
+  /* margin: 5px 7px; */
+  padding: 10px;
+  box-shadow: 5px 5px 5px black;
+  border: 1px solid #333;
+  border-radius: 0.25rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+input {
+  color: black;
+  background-color: #e5e5e5b6;
+}
+
+.snow {
+  /* background-image:  url('ct.png'), url('snow.jpg'); */
+  background-position: right bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+p {
+  margin: 0;
+  padding: 2px;
+}
+
+.hidden {
+  display: none;
+}
+
+.text-center {
+ text-align: center; 
+}
+
+select {
   color: white;
+  background-color: #444;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Модальное окно */
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #2c2c2c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,0 +1,88 @@
+import Button from '../common/Button/Button'
+import Modal from '../common/Modal/Modal'
+import AboutItem from './AboutItem'
+import { useState } from 'react'
+import mAxios from '../services/http'
+import { useAppDispatch, useAppSelector } from '../store/hook'
+import { URLType } from '../types/bd'
+import { minPriceType } from '../services/getPrices'
+
+type Props = {
+  deleteItem: (id: number) => void
+  urls: URLType[]
+  prices: minPriceType[]
+}
+
+const Items: React.FC<Props> = props => {
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [lastItemName, setLastItemName] = useState<string>('')
+  const [lastItemId, setLastItemId] = useState<number>(0)
+  const isActiveURLs = useAppSelector(state => state.isActiveURLs)
+  const dispatch = useAppDispatch()
+  
+  const acceptModal = (): void => {
+    setShowModal(false)
+    mAxios.patch('/urls', { id: lastItemId, isActive: 0 })
+    props.deleteItem(lastItemId)
+  }
+
+  const itemDeleteModalCall = (id: number, name: string): void => {
+    setLastItemId(id)
+    setLastItemName(name)
+    setShowModal(true)
+  }
+
+  const cm = (): void => {
+    setShowModal(false)
+  }
+
+  const returnItemForParse = (id: number): void => {
+    props.deleteItem(id)
+    mAxios.patch('/urls', { isActive: 1, id })
+  }
+
+  const showPriceHistory = (id: number): void => {
+    dispatch({type: 'SHOW_PRICE_HISTORY', payload: id})
+  }
+
+  const startParsing = (id: number, url: string): void => {
+    mAxios.get('/parse', {
+      params: {id, url}
+    })
+  }
+
+  return (
+    <div>
+      <Modal sm={showModal} cm={cm}>
+        <div className="flex flex-col items-center">
+          <span>{`Отключить товар «${lastItemName}» из парсинга?`}</span>
+          <Button name='Отключить' onClick={acceptModal}/>
+        </div>
+      </Modal>
+      <ul>
+        {props.urls.length === 0 && 
+          <span className='flex justify-center my-5 text-2xl text-rose-800'>
+            Нет товаров по данным параметрам
+          </span>
+        }
+        {props.urls.map((el: {id: number, name: string, url: string}, idx: number) => {
+          return (
+            <AboutItem
+              key = {el.id}
+              el = {el} 
+              idx = {idx}
+              showPriceHistory = { showPriceHistory }
+              itemDeleteModalCall = { itemDeleteModalCall }
+              returnItemForParse = { returnItemForParse }
+              startParsing = { startParsing }
+              isActiveURLs = { isActiveURLs }
+              prices = { props.prices }
+            />
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+
+export default Items

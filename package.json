@@ -3,19 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@redux-devtools/remote": "^0.9.3",
+    "@reduxjs/toolkit": "^2.2.6",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/d3": "^7.4.3",
+    "@types/node": "^20.14.11",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "axios": "^1.6.7",
+    "d3": "^7.9.0",
+    "express": "^4.19.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.7",
+    "puppeteer": "^20.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^9.1.2",
     "react-scripts": "5.0.1",
+    "redux": "^5.0.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^3.1.0",
+    "sequelize": "^6.37.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "nodemon server/api"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +52,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "tailwindcss": "^3.4.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.5.3"
   }
 }

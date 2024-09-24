@@ -1,0 +1,40 @@
+const express = require('express');
+const { getURLs, addURL, changeURL, getPrices } = require('./mysql');
+const { startParser } = require('./parser');
+const PORT = 4000;
+const app = express()
+app.use(express.json())
+app.listen(PORT, () => console.log(`Server starting on PORT ${PORT}`))
+
+// Обработка URLов
+app.get('/urls', (req, res) => {
+  getURLs(req.query)
+    .then(data => res.json(data))
+})
+
+app.post('/urls', async(req, res) => {
+  if (await addURL(req.body)) {
+    res.json(200)
+  }
+})
+
+app.patch('/urls', async(req, res) => {
+  if (await changeURL(req.body)) {
+    res.status(200)
+  }
+})
+
+// Обработка цен
+app.get('/prices', (req, res) => {
+  getPrices(req.query)
+  .then(data => {
+    res.json(data)
+  })
+})
+// Парсинг только одного товара
+app.get('/parse', (req, res) => {
+  startParser(req.query.id, req.query.url)
+  .then(data => {
+    res.status(200)
+  })
+})
