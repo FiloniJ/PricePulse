@@ -34,12 +34,13 @@ const Pagination: React.FC = () => {
     if (newPage === page) {
       return
     }
-    if (newPage > 0) {
-      setPage(newPage)
-    } else {
-      setPage(1)
+    if (newPage <= 0) {
+      newPage = 1
     }
-    dispatch({type: 'UPDATE_PRICES', payload: true})
+    setPage(newPage)
+    if (newPage !== page ) {
+      dispatch({type: 'UPDATE_PRICES', payload: true})
+    }
   }
 
   return (

@@ -17,7 +17,7 @@ const useMainLoader = (): void => {
       dispatch({type: 'UPDATE_URLS', payload: true})
       dispatch({type: 'UPDATE_PRICES', payload: true})
     }
-  }, [page, inOnePage, dateFrom, dateTo])
+  }, [page, inOnePage, dateFrom, dateTo, isActiveURLs])
 
   useLoadURLs(isActiveURLs, (page - 1) * inOnePage, inOnePage)
   useLoadPrices((page - 1) * inOnePage, inOnePage)

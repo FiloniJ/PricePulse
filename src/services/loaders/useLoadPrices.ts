@@ -7,10 +7,11 @@ const useLoadPrices = (offset: number, limit: number): void => {
   const updatePrices = useAppSelector(state => state.updatePrices)
   const dateFrom = useAppSelector(state => state.dateFrom)
   const dateTo = useAppSelector(state => state.dateTo)
+  const isActive = useAppSelector(state => state.isActiveURLs)
 
   if (updatePrices) {
     mAxios.get('/prices', {
-      params : { dateFrom, dateTo, offset, limit }
+      params : { dateFrom, dateTo, offset, limit, isActive }
     })
     .then(response => {
       const { minPrice, lastDate, dailyPrice } = getPrices(response.data)
