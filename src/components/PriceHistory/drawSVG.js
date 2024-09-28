@@ -1,8 +1,34 @@
 import * as d3 from 'd3'
 import { minPriceType } from '../../services/getPrices'
 import './PriceHistory.css'
-let svg, x, y
+let svg, x, y, radius
 
+const onMouseEnter = (e) => {
+  const id = e.target.attributes.idn.value
+  const info = d3.select(`#price${id}`)
+  info.style('font-size', '15px')
+  const circle = d3.select(`#circle${id}`)
+  circle
+    .attr('r',radius)
+    .transition()
+    .duration(50)
+    .attr('r',10)
+}
+
+const onMouseLeave = (e) => {
+  const id = e.target.attributes.idn.value
+  const info = d3.select(`#price${id}`)
+  info
+    .style('font-size','15px')
+    .transition()
+    .duration(500)
+    .style('font-size','0px')
+  const circle = d3.select(`#circle${id}`)
+  circle
+    .transition()
+    .duration(500)
+    .attr('r', radius)
+}
 
 const pointsAndValue = (data, minPrice, name) => {
   let isUp = false
@@ -15,21 +41,33 @@ const pointsAndValue = (data, minPrice, name) => {
     .style('text-anchor', 'middle')
     .style('fill', '#ddd')
   const valuesGroup = svg.append('g')
-  data.forEach(d => {
+  const len = data.length
+  radius = 7/(len+100)*100
+  if (radius < 4) radius = 4
+  const fontSize = (len <= 15) ? '10px' : '0px'
+  data.forEach((d, idx) => {
     isUp = !isUp
+    isUp = (len > 15) ? false : isUp
     const innerGroup = valuesGroup.append('g')
-    innerGroup.append('text')
+    const text = innerGroup.append('text')
       .attr('x', x(d.date))
-      .attr('y', y(d.price) + (isUp ? 25 : -15))
-      .text(d.price)
+      .attr('y', y(d.price) + (isUp ? 35 : -25))
+      .attr('id',`price${idx}`)
+      .text(`${d.price} Р`)
       .style('fill', '#ddd')
       .style('text-anchor', `${isFirstValue ? 'start' : 'middle'}`)
-      .style('font-size', '10px')
-    innerGroup.append('circle')
+      .style('font-size', fontSize)
+    const el = innerGroup.append('circle')
       .attr('cx', x(d.date))
       .attr('cy', y(d.price))
-      .attr('r', 7)
+      .attr('r', radius)
+      .attr('id', `circle${idx}`)
+      .attr('idn', idx)
       .style('fill', `${d.price === minPrice.minPrice ? '#d11313' : '#7cb5ec'}`)
+    if (len > 15) {
+      el.on('mouseover',onMouseEnter)
+      el.on('mouseleave', onMouseLeave)
+    }
     isFirstValue = false
   })
 }
