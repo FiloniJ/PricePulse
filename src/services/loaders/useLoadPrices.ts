@@ -1,6 +1,7 @@
 import mAxios from '../http'
 import getPrices from '../getPrices'
 import { useAppDispatch, useAppSelector } from '../../store/hook'
+import { PriceType } from '../../types/bd'
 
 const useLoadPrices = (offset: number, limit: number): void => {
   const dispatch = useAppDispatch()
@@ -10,7 +11,7 @@ const useLoadPrices = (offset: number, limit: number): void => {
   const isActive = useAppSelector(state => state.isActiveURLs)
 
   if (updatePrices) {
-    mAxios.get('/prices', {
+    mAxios.get<PriceType[]>('/prices', {
       params : { dateFrom, dateTo, offset, limit, isActive }
     })
     .then(response => {

@@ -1,5 +1,11 @@
 import mAxios from '../http'
 import { useAppDispatch, useAppSelector } from '../../store/hook'
+import { URLType } from '../../types/bd'
+
+type URLCountsType = {
+  count: number,
+  rows: URLType[]
+}
 
 const useLoadURLs = (isActive: number, offset: number, limit: number): void => {
   const dispatch = useAppDispatch()
@@ -7,7 +13,7 @@ const useLoadURLs = (isActive: number, offset: number, limit: number): void => {
   const updateURLs = useAppSelector(state => state.updateURLs)
 
   if (updateURLs) {
-    mAxios.get('/urls', {
+    mAxios.get<URLCountsType>('/urls', {
       params: { isActive, offset, limit }
     })
     .then(response => {
