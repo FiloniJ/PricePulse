@@ -1,11 +1,11 @@
 import Button from '../common/Button/Button'
-import Modal from '../common/Modal/Modal'
 import AboutItem from './AboutItem'
 import { useState } from 'react'
 import mAxios from '../services/http'
 import { useAppDispatch, useAppSelector } from '../store/hook'
 import { URLType } from '../types/bd'
 import { minPriceType } from '../services/getPrices'
+import ReactDOM from 'react-dom'
 
 type Props = {
   deleteItem: (id: number) => void
@@ -53,12 +53,15 @@ const Items: React.FC<Props> = props => {
 
   return (
     <div>
-      <Modal sm={showModal} cm={cm}>
-        <div className="flex flex-col items-center">
-          <span>{`Отключить товар «${lastItemName}» из парсинга?`}</span>
-          <Button name='Отключить' onClick={acceptModal}/>
-        </div>
-      </Modal>
+      {showModal && 
+        ReactDOM.createPortal(
+          <div className="modal z-50 flex flex-col items-center" onClick={():void => setShowModal(false)}>
+            <span>{`Отключить товар «${lastItemName}» из парсинга?`}</span>
+            <Button name='Отключить' onClick={acceptModal}/>
+          </div>,
+          document.getElementById('portal') as HTMLElement
+        )
+      }
       <ul>
         {props.urls.length === 0 && 
           <span className='flex justify-center my-5 text-2xl text-rose-800'>
