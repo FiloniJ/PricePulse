@@ -27,7 +27,7 @@ const startParser = async (id, url) => {
   const lastParseDate = await dayOfLastParse()
   const today = new Date().toJSON().substring(0,10)
   if (today === lastParseDate.date && !url) {
-    return
+    return console.log('Сегодня уже был массовый парсинг товаров. Повторный запуск парсинга только вручную.')
   }
   let isOzonFirst = true
   const browser = await puppeteer.launch({
@@ -44,6 +44,7 @@ const startParser = async (id, url) => {
       "--no-zygote",
       // "--single-process",
       "--disable-gpu",
+      '--disable-blink-features=AutomationControlled',
     ],
   })
   if (!id || !url) {
@@ -55,6 +56,11 @@ const startParser = async (id, url) => {
   }
   const page = await browser.newPage()
   page.setCacheEnabled(true)
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+  await page.setExtraHTTPHeaders({
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Referer': 'https://example.com',
+  });
   // Начинаем собирать данные
   let num = 1
   let successAmount = 0
