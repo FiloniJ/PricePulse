@@ -32,10 +32,6 @@ const Items: React.FC<Props> = props => {
     setShowModal(true)
   }
 
-  const cm = (): void => {
-    setShowModal(false)
-  }
-
   const returnItemForParse = (id: number): void => {
     props.deleteItem(id)
     mAxios.patch('/urls', { isActive: 1, id })

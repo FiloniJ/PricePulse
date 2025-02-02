@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import Button from '../common/Button/Button'
 import Header from '../common/Header/Header'
-import { useAppDispatch, useAppSelector } from '../store/hook'
+import { useAppDispatch } from '../store/hook'
 import DataIcon from './DataIcon'
 
 const AddURL: React.FC = () => {

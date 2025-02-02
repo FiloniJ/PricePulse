@@ -9,7 +9,6 @@ type URLCountsType = {
 
 const useLoadURLs = (isActive: number, offset: number, limit: number): void => {
   const dispatch = useAppDispatch()
-  const server = useAppSelector(state => state.server)
   const updateURLs = useAppSelector(state => state.updateURLs)
 
   if (updateURLs) {

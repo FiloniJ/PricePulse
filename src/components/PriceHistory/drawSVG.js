@@ -1,5 +1,4 @@
 import * as d3 from 'd3'
-import { minPriceType } from '../../services/getPrices'
 import './PriceHistory.css'
 let svg, x, y, radius
 
@@ -49,7 +48,7 @@ const pointsAndValue = (data, minPrice, name) => {
     isUp = !isUp
     isUp = (len > 15) ? false : isUp
     const innerGroup = valuesGroup.append('g')
-    const text = innerGroup.append('text')
+    innerGroup.append('text')
       .attr('x', x(d.date))
       .attr('y', y(d.price) + (isUp ? 35 : -25))
       .attr('id',`price${idx}`)
