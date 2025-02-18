@@ -28,26 +28,29 @@ const DateFilter: React.FC = () => {
     dispatch({type: 'SET_DATE_TO', payload: checkMinMax(e.target.value)})
   }
 
+
   return (
     <div className='flex justify-center'>
-      <span>От: </span>
-      <input 
-        className='mx-3' 
-        type="date" 
-        value={dateFrom}
-        onChange={changeDateFrom}
-        min={getOldDate(daysInterval)}
-        max={getTodayDate()}
-      />
-      <span>До: </span>
-      <input 
-        className='mx-3' 
-        type="date" 
-        value={dateTo}
-        onChange={changeDateTo}
-        min={getOldDate(daysInterval)}
-        max={getTodayDate()}
-      />
+      <label className='text-center text-[clamp(1rem,2vw,2.5rem)]'>От: 
+        <input 
+          className='mx-3 w-[clamp(50px, 10vw, 150px)]' 
+          type="date" 
+          value={dateFrom}
+          onChange={changeDateFrom}
+          min={getOldDate(daysInterval)}
+          max={getTodayDate()}
+        />
+      </label>
+      <label className='text-center text-[clamp(1rem,2vw,2.5rem)]'>До: 
+        <input 
+          className='mx-3' 
+          type="date" 
+          value={dateTo}
+          onChange={changeDateTo}
+          min={getOldDate(daysInterval)}
+          max={getTodayDate()}
+        />
+      </label>
     </div>
   )
 }

@@ -54,9 +54,12 @@ function App() {
         <PriceHistory />
       }
       {(prices && urls) && 
-        <div className="pt-36">
-          <Pagination />
-          <DateFilter />
+        <div className="pt-44">
+          <fieldset>
+            <legend>Настройки</legend>
+            <Pagination />
+            <DateFilter />
+          </fieldset>
           {(updateURLs || updatePrices) ? <Spinner />
           : <Items
             urls = {urls}

@@ -44,26 +44,30 @@ const Pagination: React.FC = () => {
   }
 
   return (
-    <div className='flex justify-center my-2'>
-      <Button class='h-8 w-8' desClass='text-xs' name='<<' onClick={() => loadPage(1 - page)} />
-      <Button class='h-8 w-8' desClass='text-xs' name='<'onClick={() => loadPage(-1)} />
-      <input type='number'
-        value={page}
-        onChange={checkPageChange}
-        className='w-14 mx-3 h-8'
-        min='1'
-      />
-      {/* <Button class='h-8 w-20' desClass='text-xs' name='Перейти' onClick={() => loadPage(0)}/> */}
-      <Button class='h-8 w-8' desClass='text-xs' name='>' onClick={() => loadPage(1)}/>
-      <Button class='h-8 w-8' desClass='text-xs' name='>>' onClick={() => loadPage(maxPage-page)}/>
-      <span className='mx-2 flex items-center text-xs'>Количество строк:</span>
-      <select onChange={changeSelectFilter} value={inOnePage} className='h-8'>
-        <option>3</option>
-        <option>5</option>
-        <option>10</option>
-        <option>15</option>
-        <option>20</option>
-      </select>
+    <div className='flex flex-col sm:flex-row justify-center my-2'>
+      <div className='flex justify-center'>
+        <Button class='h-8 w-8' desClass='text-xs' name='<<' onClick={() => loadPage(1 - page)} />
+        <Button class='h-8 w-8' desClass='text-xs' name='<'onClick={() => loadPage(-1)} />
+        <input type='number'
+          value={page}
+          onChange={checkPageChange}
+          className='w-14 mx-3 h-8'
+          min='1'
+        />
+        {/* <Button class='h-8 w-20' desClass='text-xs' name='Перейти' onClick={() => loadPage(0)}/> */}
+        <Button class='h-8 w-8' desClass='text-xs' name='>' onClick={() => loadPage(1)}/>
+        <Button class='h-8 w-8' desClass='text-xs' name='>>' onClick={() => loadPage(maxPage-page)}/>
+      </div>
+      <div className='flex justify-center mt-1'>
+        <span className='mx-2 flex items-center text-xs'>Количество строк:</span>
+        <select onChange={changeSelectFilter} value={inOnePage} className='h-8'>
+          <option>3</option>
+          <option>5</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+        </select>
+      </div>
     </div>
   )
 }

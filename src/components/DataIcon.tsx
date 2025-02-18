@@ -4,7 +4,7 @@ type Props = {
   onClick?: () => void,
   description: string,
   image: string,
-  value: string | number
+  value: string | number,
 }
 
 const DataIcon: React.FC<Props> = props => {
@@ -17,7 +17,7 @@ const DataIcon: React.FC<Props> = props => {
         alt={props.description}
         src={`./media/img/icons/${props.image}.png`}>
       </img>
-      <span className='flex items-center mx-1'>
+      <span className='flex items-center ml-1 text-nowrap'>
         {props.value}
       </span>
     </div>
