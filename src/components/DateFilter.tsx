@@ -31,7 +31,7 @@ const DateFilter: React.FC = () => {
 
   return (
     <div className='flex justify-center'>
-      <label className='text-center text-[clamp(1rem,2vw,2.5rem)]'>От: 
+      <label className='text-center' style={{fontSize: 'clamp(1rem,4vw,2.5rem)'}}>От: 
         <input 
           className='mx-3' 
           type="date" 
@@ -41,7 +41,7 @@ const DateFilter: React.FC = () => {
           max={getTodayDate()}
         />
       </label>
-      <label className='text-center text-[clamp(1rem,2vw,2.5rem)]'>До: 
+      <label className='text-center' style={{fontSize: 'clamp(1rem,4vw,2.5rem)'}}>До: 
         <input 
           className='mx-3' 
           type="date" 

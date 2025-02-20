@@ -21,9 +21,9 @@ const AboutItem: React.FC<Props> = props => {
       </a>
       <div className='flex flex-col space-y-1 sm:flex-row'>
         <div className={`grid
-            grid-cols-[clamp(100px,7.5vw,120px),clamp(100px,7.5vw,120px)]
+            grid-cols-[100px,100px]
             grid-rows-2
-            sm:grid-cols-[clamp(100px,7.5vw,120px),clamp(100px,7.5vw,120px),clamp(100px,10vw,150px),clamp(160px,20vw,200px)]
+            sm:grid-cols-[100px,100px,100px,160px]
             sm:grid-rows-1
             gap-1`
           }>
@@ -54,7 +54,7 @@ const AboutItem: React.FC<Props> = props => {
             grid grid-flow-col
             grid-rows-1
             gap-2
-            grid-cols-[clamp(45px,4vw,60px),clamp(45px,4vw,60px),clamp(45px,4vw,60px)]`
+            grid-cols-[45px,45px,45px]`
           }>
           <DataIcon
             description='История цен'
