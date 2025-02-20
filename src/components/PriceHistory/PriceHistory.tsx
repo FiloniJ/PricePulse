@@ -28,7 +28,12 @@ const PriceHistory: React.FC = () => {
   
   return (
     ReactDOM.createPortal(
-      <div className='modal z-50' id='price_history_draw' onClick={closePortal}></div>,
+      <div
+        className='modal z-50 overflow-scroll'
+        style={{display: 'inline-block'}}
+        id='price_history_draw'
+        onClick={closePortal}>
+      </div>,
       document.getElementById('portal') as HTMLElement
     )
   )

@@ -40,18 +40,23 @@ const AddURL: React.FC = () => {
       {showInputs &&
         ReactDOM.createPortal(
           <div className="justify-start modal z-50 flex flex-col" onClick={closeModal}>
-            <div className="m-2 flex flex-col w-96">
-              <Header name='Добавление нового товара' style={{fontSize: '1.1rem', letterSpacing: '2px'}}/>
+            <div className="m-2 flex flex-col w-96 min-w-0">
+              <Header 
+                name='Добавление нового товара'
+                className='max-w-[95vw] mx-auto text-sm tracking-widest'
+              />
               <label htmlFor="url" className='text-center my-2'>Введите URL</label>
               <input
                 id="url"
+                className='max-w-[95vw] mx-auto'
                 type="text"
                 value={newUrl}
                 onChange={e => setNewUrl(e.target.value)}
               />
               <label htmlFor="item-name" className='text-center'>Введите имя товара</label>
-              <input className=''
+              <input
                 id="item-name"
+                className='max-w-[95vw] mx-auto'
                 type="text"
                 value={newItem}
                 onChange={e => setNewItem(e.target.value)}

@@ -33,7 +33,7 @@ const DateFilter: React.FC = () => {
     <div className='flex justify-center'>
       <label className='text-center text-[clamp(1rem,2vw,2.5rem)]'>От: 
         <input 
-          className='mx-3 w-[clamp(50px, 10vw, 150px)]' 
+          className='mx-3' 
           type="date" 
           value={dateFrom}
           onChange={changeDateFrom}
