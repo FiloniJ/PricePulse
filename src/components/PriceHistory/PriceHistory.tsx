@@ -3,6 +3,7 @@ import './PriceHistory.css'
 import { useAppDispatch, useAppSelector } from '../../store/hook'
 import draw from './drawSVG'
 import { useEffect } from 'react'
+import { SHOW_PRICE_HISTORY } from '../../store/constants'
 
 
 const PriceHistory: React.FC = () => {
@@ -13,7 +14,7 @@ const PriceHistory: React.FC = () => {
   const minPrice = useAppSelector(state => state.prices)
 
   const closePortal = () => {
-    dispatch({type: 'SHOW_PRICE_HISTORY', payload: false})
+    dispatch({type: SHOW_PRICE_HISTORY, payload: false})
   }
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const PriceHistory: React.FC = () => {
   return (
     ReactDOM.createPortal(
       <div
-        className='modal z-50 overflow-scroll inline-block inline-block sm:flex sm:justify-center'
+        className='modal z-50 overflow-scroll inline-block sm:flex sm:justify-center'
         // style={{display: 'inline-block'}}
         id='price_history_draw'
         onClick={closePortal}>

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../store/hook'
 import { URLType } from '../types/bd'
 import { minPriceType } from '../services/getPrices'
 import ReactDOM from 'react-dom'
+import { SHOW_PRICE_HISTORY } from '../store/constants'
 
 type Props = {
   deleteItem: (id: number) => void
@@ -38,7 +39,7 @@ const Items: React.FC<Props> = props => {
   }
 
   const showPriceHistory = (id: number): void => {
-    dispatch({type: 'SHOW_PRICE_HISTORY', payload: id})
+    dispatch({type: SHOW_PRICE_HISTORY, payload: id})
   }
 
   const startParsing = (id: number, url: string): void => {

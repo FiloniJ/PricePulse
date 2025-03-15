@@ -2,6 +2,7 @@ import useLoadPrices from "./useLoadPrices"
 import useLoadURLs from "./useLoadURLs"
 import { useAppDispatch, useAppSelector } from "../../store/hook"
 import { useEffect } from "react"
+import { UPDATE_URLS, UPDATE_PRICES } from "../../store/constants"
 
 
 const useMainLoader = (): void => {
@@ -14,8 +15,8 @@ const useMainLoader = (): void => {
 
   useEffect(() => {
     if (page && page > 0) {
-      dispatch({type: 'UPDATE_URLS', payload: true})
-      dispatch({type: 'UPDATE_PRICES', payload: true})
+      dispatch({type: UPDATE_URLS, payload: true})
+      dispatch({type: UPDATE_PRICES, payload: true})
     }
   }, [page, inOnePage, dateFrom, dateTo, isActiveURLs])
 

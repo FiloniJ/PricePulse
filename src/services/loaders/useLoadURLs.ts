@@ -1,6 +1,7 @@
 import mAxios from '../http'
 import { useAppDispatch, useAppSelector } from '../../store/hook'
 import { URLType } from '../../types/bd'
+import { SET_URLS_COUNT, SET_URLS, UPDATE_URLS } from '../../store/constants'
 
 type URLCountsType = {
   count: number,
@@ -16,9 +17,9 @@ const useLoadURLs = (isActive: number, offset: number, limit: number): void => {
       params: { isActive, offset, limit }
     })
     .then(response => {
-      dispatch({type: 'SET_URLS_COUNT', payload: response.data.count})
-      dispatch({type: 'SET_URLS', payload: response.data.rows})
-      dispatch({type: 'UPDATE_URLS', payload: false})
+      dispatch({type: SET_URLS_COUNT, payload: response.data.count})
+      dispatch({type: SET_URLS, payload: response.data.rows})
+      dispatch({type: UPDATE_URLS, payload: false})
     })
   }
 }

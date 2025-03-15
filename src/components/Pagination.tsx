@@ -1,45 +1,37 @@
 import React from 'react'
 import Button from '../common/Button/Button'
 import { useAppDispatch, useAppSelector } from '../store/hook'
+import { SET_PAGINATION_PAGE, SET_ITEMS_KOL, UPDATE_PRICES} from '../store/constants'
 
 const Pagination: React.FC = () => {
   const dispatch = useAppDispatch()
-  const page = useAppSelector(state => state.page)
-  const inOnePage = useAppSelector(state => state.inOnePage)
-  const maxPage = useAppSelector(state => Math.ceil(state.urlsCount/inOnePage))
+  const { page, inOnePage, maxPage } = useAppSelector(state => ({
+    page: state.page,
+    inOnePage: state.inOnePage,
+    maxPage: Math.ceil(state.urlsCount/state.inOnePage),
+  }))
   
   const setPage = (id: number): void => {
-    dispatch({type: 'SET_PAGINATION_PAGE', payload: id})
+    dispatch({type: SET_PAGINATION_PAGE, payload: id})
   }
 
   const changeSelectFilter = (el: React.ChangeEvent<HTMLSelectElement>): void => {
-    dispatch({type: 'SET_ITEMS_KOL', payload: el.target.value})
-    dispatch({type: 'UPDATE_PRICES', payload: true})
+    dispatch({type: SET_ITEMS_KOL, payload: el.target.value})
+    dispatch({type: UPDATE_PRICES, payload: true})
   }
 
   const checkPageChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     let value = Number(e.target.value)
-    if (value > 0) {
-      if (value <= maxPage) {
-        setPage(value)
-      }
+    if (value > 0 && value <= maxPage) {
+      setPage(value)
     }
   }
 
   const loadPage = (dif: number): void => {
-    let newPage = Number(page) + dif
-    if (newPage > maxPage) {
-      newPage = maxPage
-    }
-    if (newPage === page) {
-      return
-    }
-    if (newPage <= 0) {
-      newPage = 1
-    }
-    setPage(newPage)
+    let newPage = Math.min(Math.max(page + dif, 1), maxPage);
     if (newPage !== page ) {
-      dispatch({type: 'UPDATE_PRICES', payload: true})
+      setPage(newPage)
+      dispatch({type: UPDATE_PRICES, payload: true})
     }
   }
 
@@ -61,11 +53,9 @@ const Pagination: React.FC = () => {
       <div className='flex justify-center mt-1'>
         <span className='mx-2 flex items-center text-xs'>Количество строк:</span>
         <select onChange={changeSelectFilter} value={inOnePage} className='h-8'>
-          <option>3</option>
-          <option>5</option>
-          <option>10</option>
-          <option>15</option>
-          <option>20</option>
+          {[3,5,10,15,20].map(num => (
+            <option key={num} value={num}>{num}</option>
+          ))}
         </select>
       </div>
     </div>

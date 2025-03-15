@@ -11,6 +11,7 @@ import Pagination from "./components/Pagination";
 import DateFilter from "./components/DateFilter";
 import useMainLoader from "./services/loaders/useMainLoader";
 import { URLType } from "./types/bd";
+import { UPDATE_PRICES, UPDATE_URLS, SET_URLS } from "./store/constants";
 
 
 function App() {
@@ -24,12 +25,12 @@ function App() {
   const updateURLs = useAppSelector(state => state.updateURLs)
 
   useEffect(() => {
-    dispatch({type: 'UPDATE_PRICES', payload: true})
-    dispatch({type: 'UPDATE_URLS', payload: true})
+    dispatch({type: UPDATE_PRICES, payload: true})
+    dispatch({type: UPDATE_URLS, payload: true})
   }, [])
 
   const deleteItem = (id: number) => {
-    dispatch({type: 'SET_URLS', payload: urls.filter((url: URLType) => url.id !== id)})
+    dispatch({type: SET_URLS, payload: urls.filter((url: URLType) => url.id !== id)})
   }
   useMainLoader()
 

@@ -5,6 +5,7 @@ import Button from '../common/Button/Button'
 import Header from '../common/Header/Header'
 import { useAppDispatch } from '../store/hook'
 import DataIcon from './DataIcon'
+import { UPDATE_URLS } from '../store/constants'
 
 const AddURL: React.FC = () => {
   const [newUrl, setNewUrl] = useState<string>('')
@@ -19,7 +20,7 @@ const AddURL: React.FC = () => {
         name: newItem.slice(0,99),
       })
       .then(response => {
-        dispatch({type: 'UPDATE_URLS', payload: true})
+        dispatch({type: UPDATE_URLS, payload: true})
       })
       setInputsShowing(false)
       setNewUrl('')

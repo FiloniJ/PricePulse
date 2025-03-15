@@ -2,6 +2,7 @@ import { getTodayDate, getOldDate } from '../services/nowDate'
 import { daysInterval } from '../config'
 import { useAppDispatch, useAppSelector } from '../store/hook'
 import React from 'react'
+import { SET_DATE_FROM, SET_DATE_TO } from '../store/constants'
 
 const DateFilter: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -21,11 +22,11 @@ const DateFilter: React.FC = () => {
   }
   
   const changeDateFrom = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    dispatch({type: 'SET_DATE_FROM', payload: checkMinMax(e.target.value)})
+    dispatch({type: SET_DATE_FROM, payload: checkMinMax(e.target.value)})
   }
 
   const changeDateTo = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    dispatch({type: 'SET_DATE_TO', payload: checkMinMax(e.target.value)})
+    dispatch({type: SET_DATE_TO, payload: checkMinMax(e.target.value)})
   }
 
 
