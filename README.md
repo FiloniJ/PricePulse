@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Парсер цен (Мегамаркет, Ozon)
+### Назначение
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ежедневно (раз в сутки при запуске сервера) парсит все товары, которые были добавлены в список. Есть возможность отключать из парсинга товары по выбору с сохранением истории цен у них. Вся история цен записывается в БД.
+### Функции
+✔️ Парсинг цен на товары из списка  
+✔️ Сохранение истории цен  
+✔️ Возможность выбрать диапазон дат для просмотра истории цен  
+✔️ Отображении на графике истории цены  
+✔️ Отображение отклоенения последней цены от минимальной за выбранный период   
 
-## Available Scripts
+### Установка
+Введите в терминале следующие команды:  
+• для клонирования  репозитория
+```sh
+git clone https://github.com/FiloniJ/parser.git
+```
+• для установки необходимых пакетов
+```sh
+cd parser
+npm install --force
+```
+• для серверной части можно использовать Open Server 5.2.2
+Для этого необходимо скачать и установить этот сервер, запустить и в браузере зайти по следующей ссылке
+```sh
+http://127.0.0.1/openserver/phpmyadmin/index.php
+```
+Авторизоваться - по умолчанию логин root, пароль пустой.
+Далее «Создать БД», вводите имя базы данных **prices** и «Создать».
+Далее вкладка «Импорт» и выбираете файл из корневой папки проекта «prices.sql», нажимаете «вперёд». В итоге база данных создана и тестовые данные загружены.
 
-In the project directory, you can run:
+### Использование
+• для запуска сервера в первом терминале (запустится автоматический парсинг товаров 1 раз если сегодня не было парсинга)
+```sh
+npm run server
+```
+• для запуска клиента во втором терминале
+```sh
+npm start
+```
+Если по последней команде выдаёт ошибку, то сперва используйте
+```sh
+cd parser
+```
+После запуска откроется новое окно в браузере (обычно по адресу http://localhost:3000/)
+1. Если нет ни одного товара. Нажмите на иконку «Добавить новый товар», ввидте URL адрес товара (только озон или мегамаркет), введите название товара и нажмите «Добавить».
+2. При первом запуске сервера в новые сутки автоматические запускается парсинг всех активных (не отключеныp из парсинга) товаров. Далее при добавлении нового товара парсинг надо запускать вручную (если сегодня уже был автоматический парсинг товаров) нажав на иконку «Спарсить данный товар» (белый прямоугольник с красной обводкой).
+3. График цены можно посмотреть когда в истории будет 2 или больше цен. Описание иконок можно узнать наведя на них курсор.
+4. Товар из паринга отключается нажатием на иконку крестика. Вернуть товар в парсинг можно переключившись в меню отключённых из парсинга товаров (икона ON в верхнем меню).
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Особенности проекта
+| Функция| Описание| 
+|-----------------------|--|
+|**Обход антибота**|Крупные площадки ставят защиту от программ ботов. Антибот умеет обходить эту защиту.|
+|**Обновление данных из БД**|При измении диапазона дат или количества товара на одном листе кастомные хуки автоматически запрашивают новые данные с сервера.|
+|**График цен**|Отображается с помощью D3.js. Если в истории слишком много цен, то цена цифрами на графике отображаются только пра наведении курсора на круг с ценой.|
+|**Иконки управлния**|Описание иконок всегда появляется при наведении курсора на них.|
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Возможные ошибки парсинга
+• если товара нет в наличии, то площадка не показывает цену и в историю цен запись не вносится. После завершения парсинга в консоли пишет сколько успешных парсингов и какие товары не удалось спарсить.  
+• иногда страница сайта очень долго грузится и срабатывает timeout ожидания - помогает запуск одиночного парсинга товара после автопарсинга всех товаров  
+• со временем названия классов DOM элементов могут поменяться что потребует поправок в коде чтобы парсер снова начал корректно работать
