@@ -5,11 +5,9 @@ import { SET_PAGINATION_PAGE, SET_ITEMS_KOL, UPDATE_PRICES} from '../store/const
 
 const Pagination: React.FC = () => {
   const dispatch = useAppDispatch()
-  const { page, inOnePage, maxPage } = useAppSelector(state => ({
-    page: state.page,
-    inOnePage: state.inOnePage,
-    maxPage: Math.ceil(state.urlsCount/state.inOnePage),
-  }))
+  const page = useAppSelector(state => state.page)
+  const inOnePage = useAppSelector(state => state.inOnePage)
+  const maxPage = useAppSelector(state => Math.ceil(state.urlsCount/state.inOnePage))
   
   const setPage = (id: number): void => {
     dispatch({type: SET_PAGINATION_PAGE, payload: id})
