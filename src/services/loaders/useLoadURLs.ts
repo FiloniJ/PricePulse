@@ -21,6 +21,9 @@ const useLoadURLs = (isActive: number, offset: number, limit: number): void => {
       dispatch({type: SET_URLS, payload: response.data.rows})
       dispatch({type: UPDATE_URLS, payload: false})
     })
+    .catch((e) => {
+      throw new Error(e)
+    })
   }
 }
 

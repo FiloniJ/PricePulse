@@ -22,6 +22,9 @@ const useLoadPrices = (offset: number, limit: number): void => {
       dispatch({type: SET_LAST_UPDATE_DATE, payload: lastDate})
       dispatch({type: UPDATE_PRICES, payload: false})
     })
+    .catch((e) => {
+      throw new Error(e)
+    })
   }
 }
 
