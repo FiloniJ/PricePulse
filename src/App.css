@@ -21,7 +21,6 @@ body {
   background-color: var(--fon);
   color: rgb(190, 190, 190);
   user-select: none;
-  /* text-indent: 15px; */
   font-size: 18px;
   font-weight: bolder;
   box-sizing: border-box;
@@ -30,7 +29,6 @@ body {
 
 .layout {
   background-color: #141414;
-  /* margin: 5px 7px; */
   padding: 10px;
   box-shadow: 5px 5px 5px black;
   border: 1px solid #333;
@@ -40,13 +38,6 @@ body {
 input {
   color: black;
   background-color: #e5e5e5b6;
-}
-
-.snow {
-  /* background-image:  url('ct.png'), url('snow.jpg'); */
-  background-position: right bottom;
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 p {
