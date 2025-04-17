@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
-const { getURLs, savePrices, dayOfLastParse } = require('./mysql')
+const { getURLs, savePrices, dayOfLastParse } = require('./db');
+const config = require('./config');
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 let urls = []
@@ -31,8 +32,8 @@ const startParser = async (id, url) => {
   }
   let isOzonFirst = true
   const browser = await puppeteer.launch({
-    headless: false,
-    executablePath: "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+    headless: 'new',
+    executablePath: config.browserPath,
     slowMo: 250,
     timeout: 60000,
     args: [
@@ -48,7 +49,7 @@ const startParser = async (id, url) => {
     ],
   })
   if (!id || !url) {
-    const data = await getURLs({isActive: 1})
+    const data = await getURLs({isActive: true})
     urls = data.rows
   } else {
     urls = []

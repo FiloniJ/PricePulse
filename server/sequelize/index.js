@@ -1,11 +1,14 @@
 const Sequelize = require('sequelize');
-const CONFIG = require('../config');
+const CONFIG = require('../app/config');
 
 const sequelize = new Sequelize(CONFIG.database, CONFIG.username, CONFIG.password, {
-  dialect: 'mysql',
+  dialect: 'postgres',
   host: CONFIG.host,
+  port: CONFIG.port,
   logging: false
 })
+
+
 const Urls = require('./Urls')(sequelize)
 const DailyPrice = require('./DailyPrice')(sequelize)
 

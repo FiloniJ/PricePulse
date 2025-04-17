@@ -1,20 +1,20 @@
 const express = require('express');
-const { getURLs, addURL, changeURL, getPrices } = require('./mysql');
+const { getURLs, addURL, changeURL, getPrices } = require('./db');
 const { startParser } = require('./parser');
-const PORT = 4000;
+const PORT = 5000;
 const app = express()
 
 app.use(express.json())
-app.listen(PORT, () => console.log(`Server starting on PORT ${PORT}`))
+app.listen(PORT, '0.0.0.0', () => console.log(`Server starting on PORT ${PORT}`))
 
 // CORS
 app.use((req, res, next) => {
   const origin = req.headers.origin
-  if (origin.startsWith('http://localhost')) {
+  // if (origin.startsWith('http://localhost')) {
     res.header('Access-Control-Allow-Origin', origin)
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
     res.header('Access-Control-Allow-Headers', "Content-Type, Authorization")
-  }
+  // }
   next()
 })
 

@@ -1,6 +1,6 @@
 const CONFIG = require('./config');
 const { Op } = require('sequelize');
-const db = require('./db');
+const db = require('../sequelize');
 
 // URLS
 const getURLs = async (params) => {
@@ -14,7 +14,7 @@ const getURLs = async (params) => {
 }
 
 const addURL = async(data) => {
-  return await db.Urls.create({url: data.url, name: data.name, isActive: 1})
+  return await db.Urls.create({url: data.url, name: data.name, isActive: true})
 }
 
 const changeURL = async(params) => {

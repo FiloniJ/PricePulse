@@ -3,17 +3,18 @@ const Sequelize = require('sequelize');
 module.exports = (sequelize) => {
   return sequelize.define('DailyPrice', {
     id: {
-      type: Sequelize.SMALLINT.UNSIGNED,
-      primaryKey: true
+      type: Sequelize.SMALLINT,
+      primaryKey: true,
+      autoIncrement: true
     },
     item: {
-      type: Sequelize.SMALLINT.UNSIGNED,
+      type: Sequelize.SMALLINT,
     },
     date: {
       type: Sequelize.DATE
     },
     price: {
-      type: Sequelize.MEDIUMINT.UNSIGNED
+      type: Sequelize.INTEGER
     }
   }, {
     timestamps: false,

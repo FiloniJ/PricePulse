@@ -8,7 +8,7 @@ type URLCountsType = {
   rows: URLType[]
 }
 
-const useLoadURLs = (isActive: number, offset: number, limit: number): void => {
+const useLoadURLs = (isActive: boolean, offset: number, limit: number): void => {
   const dispatch = useAppDispatch()
   const updateURLs = useAppSelector(state => state.updateURLs)
 

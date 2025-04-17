@@ -23,7 +23,7 @@ const Items: React.FC<Props> = props => {
   
   const acceptModal = (): void => {
     setShowModal(false)
-    mAxios.patch('/urls', { id: lastItemId, isActive: 0 })
+    mAxios.patch('/urls', { id: lastItemId, isActive: false })
     props.deleteItem(lastItemId)
   }
 
@@ -35,7 +35,7 @@ const Items: React.FC<Props> = props => {
 
   const returnItemForParse = (id: number): void => {
     props.deleteItem(id)
-    mAxios.patch('/urls', { isActive: 1, id })
+    mAxios.patch('/urls', { isActive: true, id })
   }
 
   const showPriceHistory = (id: number): void => {

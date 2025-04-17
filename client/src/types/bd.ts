@@ -2,7 +2,7 @@ export type URLType = {
   id: number,
   url: string,
   name: string,
-  isActive: number
+  isActive: boolean
 }
 
 export type PriceType = {

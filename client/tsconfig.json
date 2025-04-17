@@ -1,17 +1,3 @@
-// {
-//   "compilerOptions": {
-//     "outDir": "./dist/",
-//     "module": "es6",
-//     "target": "es5",
-//     "jsx": "react-jsx",
-//     "allowJs": true,
-//     "allowUmdGlobalAccess": true,
-//     "allowSyntheticDefaultImports": true,
-//     "moduleResolution": "node"
-//   },
-//   "include": ["./src/**/*"]
-// }
-
 {
   "compilerOptions": {
     "target": "es5",

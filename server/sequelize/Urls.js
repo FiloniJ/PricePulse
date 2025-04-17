@@ -3,8 +3,9 @@ const Sequelize = require('sequelize');
 module.exports = (sequelize) => {
   return sequelize.define('Urls', {
     id: {
-      type: Sequelize.SMALLINT.UNSIGNED,
-      primaryKey: true
+      type: Sequelize.SMALLINT,
+      primaryKey: true,
+      autoIncrement: true
     },
     url: {
       type: Sequelize.STRING(255)
@@ -13,7 +14,7 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING(100)
     },
     isActive: {
-      type: Sequelize.TINYINT(1)
+      type: Sequelize.BOOLEAN
     }
   }, {
     timestamps: false,
