@@ -1,6 +1,6 @@
 const express = require('express');
 const { getURLs, addURL, changeURL, getPrices } = require('./db');
-const { startParser } = require('./parser');
+const { startParser } = require('../parsers/index');
 const PORT = 5000;
 const app = express()
 
