@@ -19,11 +19,13 @@ const ItemsBlock = () => {
     }
 
     return (
-        <div className="pt-44">
+        <main className="pt-44">
           <fieldset>
             <legend>Настройки</legend>
-            <Pagination />
-            <DateFilter />
+            <nav>
+              <Pagination />
+              <DateFilter />
+            </nav>
           </fieldset>
           {(updateURLs || updatePrices) ? <Spinner />
           : <Items
@@ -31,8 +33,10 @@ const ItemsBlock = () => {
             prices = {prices}
             deleteItem = {deleteItem}
           />}
-          <Pagination />
-        </div>
+          <nav>
+            <Pagination />
+          </nav>
+        </main>
     )
 }
 

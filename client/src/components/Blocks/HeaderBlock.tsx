@@ -9,7 +9,7 @@ const HeaderBlock = () => {
     const isActiveURLs = useAppSelector(state => state.isActiveURLs)
 
     return (
-        <div className="fixed w-full z-10">
+        <header className="fixed w-full z-10">
             <Header name='Парсер цен'>
             <div className="text-sm tracking-tight">
                 <span>Дата последнего обновления: {lastUpdateDate}</span>
@@ -22,7 +22,7 @@ const HeaderBlock = () => {
                 {isActiveURLs ? 'Список для парсинга' : 'Отключённые из парсинга'}
             </span>
             </Header>
-        </div>
+        </header>
     )
 }
 

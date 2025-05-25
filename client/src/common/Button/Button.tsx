@@ -25,9 +25,9 @@ const Button = (props: Props) => {
         className={`layout but ${props.isLoading && 'loader'} ${props.hidden && 'hide'} ${props.class && props.class}`}
         disabled={props.isLoading}
       >
-        <div className={`flex justify-center items-center ${props.desClass && props.desClass}`}>
+        <span className={`flex justify-center items-center ${props.desClass && props.desClass}`}>
           {!props.isLoading && props.name }
-        </div>
+        </span>
       </button>
     </div>
   )

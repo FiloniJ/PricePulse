@@ -15,9 +15,9 @@ type Props = {
 
 const AboutItem: React.FC<Props> = props => {
   return (
-    <div className='layout md:flex md:flex-col md:items-center' key={props.el.id}>
+    <li key={props.el.id} className='layout md:flex md:flex-col md:items-center'>
       <a href={props.el.url} className='hover:text-amber-500' target='blank'> 
-        <li key={props.el.id}>{`${props.idx + 1}. ${props.el.name}`}</li>
+        <div>{`${props.idx + 1}. ${props.el.name}`}</div>
       </a>
       <div className='flex flex-col space-y-1 sm:flex-row'>
         <div className={`grid
@@ -85,7 +85,7 @@ const AboutItem: React.FC<Props> = props => {
             />
         </div>
       </div>
-    </div>
+    </li>
   )
 }
 
